@@ -12,6 +12,7 @@
 #include "componentchoosergeo.h"
 #include "componentchooserterminal.h"
 #include "componentchoosertexteditor.h"
+#include "componentchooserimageviewer.h"
 
 ComponentChooserData::ComponentChooserData(QObject *parent, const QVariantList &args)
     : KCModuleData(parent, args)
@@ -21,6 +22,7 @@ ComponentChooserData::ComponentChooserData(QObject *parent, const QVariantList &
     , m_emailClients(new ComponentChooserEmail(this))
     , m_geoUriHandlers(new ComponentChooserGeo(this))
     , m_textEditors(new ComponentChooserTextEditor(this))
+    , m_imageViewers(new ComponentChooserImageViewer(this))
 {
     load();
 }
@@ -33,6 +35,7 @@ void ComponentChooserData::load()
     m_emailClients->load();
     m_geoUriHandlers->load();
     m_textEditors->load();
+    m_imageViewers->load();
 }
 
 void ComponentChooserData::save()
@@ -43,6 +46,7 @@ void ComponentChooserData::save()
     m_emailClients->save();
     m_geoUriHandlers->save();
     m_textEditors->save();
+    m_imageViewers->save();
 }
 
 void ComponentChooserData::defaults()
@@ -53,20 +57,21 @@ void ComponentChooserData::defaults()
     m_emailClients->defaults();
     m_geoUriHandlers->defaults();
     m_textEditors->defaults();
+    m_imageViewers->defaults();
 }
 
 bool ComponentChooserData::isDefaults() const
 {
     return m_browsers->isDefaults() && m_fileManagers->isDefaults() && m_terminalEmulators->isDefaults() && m_emailClients->isDefaults()
         && m_geoUriHandlers->isDefaults();
-        && m_textEditors->isDefaults();
+        && m_textEditors->isDefaults() && m_imageViewers->isDefaults();
 }
 
 bool ComponentChooserData::isSaveNeeded() const
 {
     return m_browsers->isSaveNeeded() || m_fileManagers->isSaveNeeded() || m_terminalEmulators->isSaveNeeded() || m_emailClients->isSaveNeeded()
         || m_geoUriHandlers->isSaveNeeded();
-        || m_textEditors->isSaveNeeded();
+        || m_textEditors->isSaveNeeded() || m_imageViewers->isSaveNeeded();
 }
 
 ComponentChooser *ComponentChooserData::browsers() const
@@ -94,4 +99,9 @@ ComponentChooser *ComponentChooserData::textEditors() const
 {
     return m_geoUriHandlers;
     return m_textEditors;
+}
+
+ComponentChooser *ComponentChooserData::imageViewers() const
+{
+    return m_imageViewers;
 }
