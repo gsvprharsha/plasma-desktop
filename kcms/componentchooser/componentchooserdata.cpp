@@ -78,7 +78,7 @@ void ComponentChooserData::defaults()
 bool ComponentChooserData::isDefaults() const
 {
     return m_browsers->isDefaults() && m_fileManagers->isDefaults() && m_terminalEmulators->isDefaults() && m_emailClients->isDefaults()
-        && m_geoUriHandlers->isDefaults();
+        && m_geoUriHandlers->isDefaults()
         && m_textEditors->isDefaults() && m_imageViewers->isDefaults() && m_musicPlayers->isDefaults() && m_videoPlayers->isDefaults()
         && m_pdfViewers->isDefaults();
 }
@@ -86,7 +86,7 @@ bool ComponentChooserData::isDefaults() const
 bool ComponentChooserData::isSaveNeeded() const
 {
     return m_browsers->isSaveNeeded() || m_fileManagers->isSaveNeeded() || m_terminalEmulators->isSaveNeeded() || m_emailClients->isSaveNeeded()
-        || m_geoUriHandlers->isSaveNeeded();
+        || m_geoUriHandlers->isSaveNeeded()
         || m_textEditors->isSaveNeeded() || m_imageViewers->isSaveNeeded() || m_musicPlayers->isSaveNeeded() || m_videoPlayers->isSaveNeeded()
         || m_pdfViewers->isSaveNeeded();
 }
@@ -112,9 +112,12 @@ ComponentChooser *ComponentChooserData::emailClients() const
 }
 
 ComponentChooser *ComponentChooserData::geoUriHandlers() const
-ComponentChooser *ComponentChooserData::textEditors() const
 {
     return m_geoUriHandlers;
+}
+
+ComponentChooser *ComponentChooserData::textEditors() const
+{
     return m_textEditors;
 }
 
